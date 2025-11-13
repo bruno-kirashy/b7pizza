@@ -6,7 +6,7 @@ export async function GET() {
 
   pizzas = pizzas.map((pizza) => ({
     ...pizza,
-    image: `${process.env.NEXT_PUBLIC_IMAGE_URL}/pizzas/${pizza.image}`,
+    image: `${process.env.NEXT_PUBLIC_BASE_URL}/pizzas/${pizza.image}`,
   }));
 
   return NextResponse.json({ pizzas });
