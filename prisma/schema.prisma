@@ -41,6 +41,8 @@ model User {
 
   password String
 
+  token    String?
+
   orders   Order[]
 
 }
