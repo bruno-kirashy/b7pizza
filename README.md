@@ -6,7 +6,12 @@ O principal objetivo foi aplicar na prática a criação de uma aplicação full
 
 ### 🛠️ Tecnologias Utilizadas
 
-- **Next.js:** Framework React para renderização no servidor (SSR) e geração de sites estáticos (SSG), além de criar as rotas de API.
-- **TypeScript:** Superset do JavaScript que adiciona tipagem estática, aumentando a manutenibilidade e a segurança do código.
-- **Prisma ORM:** ORM (Object-Relational Mapping) moderno para Node.js e TypeScript, facilitando a comunicação com o banco de dados.
-- **PostgreSQL:** O banco de dados relacional utilizado para armazenar os dados da aplicação (pedidos, usuários, produtos, etc.).
+* **Next.js:** Framework React para renderização no servidor (SSR) e geração de sites estáticos (SSG), além de criar as rotas de API.
+* **TypeScript:** Superset do JavaScript que adiciona tipagem estática, aumentando a manutenibilidade e a segurança do código.
+* **Prisma ORM:** ORM (Object-Relational Mapping) moderno para Node.js e TypeScript, facilitando a comunicação com o banco de dados.
+* **PostgreSQL:** O banco de dados relacional utilizado para armazenar os dados da aplicação (pedidos, usuários, produtos, etc.).
+
+### ☁️ Infraestrutura e Hospedagem
+
+* **Vercel:** Plataforma utilizada para o *deploy* e hospedagem do projeto Next.js (front-end e API routes), garantindo performance global e integração contínua (CI/CD) a partir do GitHub.
+* **Supabase:** Utilizado como o provedor de banco de dados (BaaS - Backend as a Service), gerenciando a instância PostgreSQL de forma otimizada para ambientes serverless.
