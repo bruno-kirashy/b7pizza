@@ -8,5 +8,5 @@ export async function POST(request: Request) {
   const has = await hasEmail(email);
   if (!has) return NextResponse.json({ exists: false });
 
-  return NextResponse.json({ existis: true });
+  return NextResponse.json({ exists: true });
 }

@@ -5,8 +5,10 @@ import { useProducts } from "@/stores/products";
 import { useEffect, useState } from "react";
 import { CartProduct } from "./CartProduct";
 import { decimalToMoney } from "@/lib/utils";
+import { useAuth } from "@/stores/auth";
 
 export const CartList = () => {
+  const auth = useAuth();
   const cart = useCart();
   const products = useProducts();
   const [subtotal, setSubtotal] = useState(0);
@@ -24,7 +26,7 @@ export const CartList = () => {
   };
   useEffect(calculateSubtotal, [cart]);
   return (
-    <div>
+    <div className="flex flex-col justify-center">
       <div className="flex flex-col gap-3 my-5">
         {cart.items.map((item) => (
           <CartProduct
@@ -40,7 +42,14 @@ export const CartList = () => {
           Total: {decimalToMoney(subtotal + shippingCost)}
         </div>
       </div>
-      <Button className="cursor-pointer">Finalizar Compra</Button>
+      {auth.token && (
+        <Button className="cursor-pointer bg-green-700 hover:bg-green-900 transition-colors duration-500">
+          Finalizar Compra
+        </Button>
+      )}
+      {!auth.token && (
+        <Button onClick={() => auth.setOpen(true)}>Login / Cadastro</Button>
+      )}
     </div>
   );
 };

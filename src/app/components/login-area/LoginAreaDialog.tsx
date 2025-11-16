@@ -9,8 +9,11 @@ import {
 } from "@/components/ui/dialog";
 import { useAuth } from "@/stores/auth";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
-import { LoginAteaStepEmail } from "./LoginAreaStepEmail";
+import { useEffect, useState } from "react";
+import { LoginAreaStepEmail } from "./LoginAreaStepEmail";
+import { LoginAreaStepSignup } from "./LoginAreaStepSignup";
+import { getCookie } from "cookies-next/client";
+import { LoginAreaStepSignin } from "./LoginAreaStepSignin";
 
 type Steps = "EMAIL" | "SIGNUP" | "SIGNIN";
 
@@ -20,9 +23,18 @@ export const LoginAreaDialog = () => {
   const [step, setStep] = useState<Steps>("EMAIL");
   const [emailField, setEmailField] = useState<string>("");
 
+  useEffect(() => {
+    const token = getCookie("token");
+    if (token) auth.setToken(token);
+  }, []);
+
   const handleStepEmail = (hasEmail: boolean, email: string) => {
     setEmailField(email);
-    hasEmail ? setStep("SIGNIN") : setStep("SIGNUP");
+    if (hasEmail) {
+      setStep("SIGNIN");
+    } else {
+      setStep("SIGNUP");
+    }
   };
 
   return (
@@ -51,10 +63,10 @@ export const LoginAreaDialog = () => {
 
           <div className="flex flex-col gap-4">
             {step === "EMAIL" && (
-              <LoginAteaStepEmail onValidate={handleStepEmail} />
+              <LoginAreaStepEmail onValidate={handleStepEmail} />
             )}
-            {step === "SIGNIN" && <div>Login</div>}
-            {step === "SIGNUP" && <div>Cadastro</div>}
+            {step === "SIGNIN" && <LoginAreaStepSignin email={emailField} />}
+            {step === "SIGNUP" && <LoginAreaStepSignup email={emailField} />}
           </div>
         </DialogContent>
       </Dialog>

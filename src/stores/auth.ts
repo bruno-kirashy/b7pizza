@@ -4,7 +4,7 @@ import { create } from "zustand";
 type Store = {
   token: string | null;
   open: boolean;
-  setOpen: (newBoolean: boolean) => void;
+  setOpen: (newOpen: boolean) => void;
   setToken: (newToken: string | null) => void;
 };
 

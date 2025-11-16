@@ -13,7 +13,7 @@ export const LoginAreaButton = ({ initialState }: Props) => {
 
   useEffect(() => {
     setAuthState(auth.token ? true : false);
-  }, [authState]);
+  }, [auth]);
 
   const handleLogout = () => {
     auth.setToken(null);
@@ -22,15 +22,19 @@ export const LoginAreaButton = ({ initialState }: Props) => {
   if (authState) {
     return (
       <>
-        <Link href="/pedidos">
-          <Button>Meus Pedidos</Button>
+        <Link href="/">
+          <Button
+            onClick={() => {
+              alert("Você infelizmente ainda não tem pedidos... :(");
+            }}
+          >
+            Meus Pedidos
+          </Button>
         </Link>
         <Button onClick={handleLogout}>Sair</Button>
       </>
     );
-  }
-
-  if (!authState) {
+  } else {
     return <Button onClick={() => auth.setOpen(true)}>Login / Cadastro</Button>;
   }
 };
